@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift(File.dirname(__FILE__), '..', 'lib')
+require 'git/network'
+
+case ARGV[0]
+when 'list'
+  # TODO: GH_NETWORK environment variable should a git setting?
+  user, project = ARGV[1..2]
+  list = Git::Network.list(user, project, ENV['GH_NETWORK'])
+
+  puts list.join("\n")
+end
